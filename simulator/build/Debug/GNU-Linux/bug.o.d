@@ -1,8 +1,7 @@
-build/Debug/GNU-Linux/bug.o: bug.cpp headers/bug.h headers/aux.h \
- headers/exception.h
+build/Debug/GNU-Linux/bug.o: bug.cpp bug.h aux.h exception.h
 
-headers/bug.h:
+bug.h:
 
-headers/aux.h:
+aux.h:
 
-headers/exception.h:
+exception.h:

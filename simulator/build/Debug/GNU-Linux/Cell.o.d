@@ -1,14 +1,12 @@
-build/Debug/GNU-Linux/Cell.o: Cell.cpp headers/Cell.h headers/bug.h \
- headers/aux.h headers/exception.h headers/Marker.h headers/exception.h
+build/Debug/GNU-Linux/Cell.o: Cell.cpp Cell.h bug.h aux.h exception.h \
+  Marker.h
 
-headers/Cell.h:
+Cell.h:
 
-headers/bug.h:
+bug.h:
 
-headers/aux.h:
+aux.h:
 
-headers/exception.h:
+exception.h:
 
-headers/Marker.h:
-
-headers/exception.h:
+Marker.h:

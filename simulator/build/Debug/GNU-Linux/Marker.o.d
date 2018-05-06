@@ -1,12 +1,10 @@
-build/Debug/GNU-Linux/Marker.o: Marker.cpp headers/Marker.h headers/aux.h \
- headers/bug.h headers/exception.h headers/exception.h
+build/Debug/GNU-Linux/Marker.o: Marker.cpp Marker.h aux.h bug.h \
+  exception.h
 
-headers/Marker.h:
+Marker.h:
 
-headers/aux.h:
+aux.h:
 
-headers/bug.h:
+bug.h:
 
-headers/exception.h:
-
-headers/exception.h:
+exception.h:
