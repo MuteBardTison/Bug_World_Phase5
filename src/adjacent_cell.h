@@ -1,7 +1,7 @@
 #include "aux.h"
 
 void adjacentCell(int x, int y, int d, int *adjx, int *adjy) {
-    switch(d){
+    switch(d) {
         case 0:
             *adjx = x + 1;
             *adjy = y;

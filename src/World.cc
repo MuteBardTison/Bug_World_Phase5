@@ -114,52 +114,52 @@ aux::tposition World::adjacent(aux::tdirection dir, aux::tposition pos) {
         case 1:
             if(even(pos.y)) {
                 res.x = pos.x;
-                res.y = pos.y+1;
+                res.y = pos.y + 1;
             }
             else{
-                res.x = pos.x+1;
-                res.y = pos.y+1;
+                res.x = pos.x + 1;
+                res.y = pos.y + 1;
             }
             break;
         case 2:
             if(even(pos.y)) {
-                res.x = pos.x-1;
-                res.y = pos.y+1;
+                res.x = pos.x - 1;
+                res.y = pos.y + 1;
             }
             else{
                 res.x = pos.x;
-                res.y = pos.y+1;
+                res.y = pos.y + 1;
             }
             break;
         case 3:
-            res.x = pos.x-1;
+            res.x = pos.x - 1;
             res.y = pos.y;
             break;
         case 4:
             if(even(pos.y)) {
-                res.x = pos.x-1;
-                res.y = pos.y-1;
+                res.x = pos.x - 1;
+                res.y = pos.y - 1;
             }
             else{
                 res.x = pos.x;
-                res.y = pos.y-1;
+                res.y = pos.y - 1;
             }
             break;
         case 5:
             if(even(pos.y)) {
                 res.x = pos.x;
-                res.y = pos.y-1;
+                res.y = pos.y - 1;
             }
             else{
-                res.x = pos.x+1;
-                res.y = pos.y-1;
+                res.x = pos.x + 1;
+                res.y = pos.y - 1;
             }
             break;
         default:
             std::cout << "Error!" << std::endl;
             res.x = -1;
             res.y = -1;
-            throw("Invalid direction integer!\n");
+            throw "Invalid direction integer!\n";
             ///raise exception here;
             break;
     }
@@ -170,7 +170,6 @@ aux::tposition World::adjacent(aux::tdirection dir, aux::tposition pos) {
 aux::tcolor World::other_color(aux::tcolor c) {
     aux::tcolor res;
     res.c = 1 - c.c;
-    
     return res;
 }
 
@@ -179,7 +178,7 @@ aux::tcolor World::other_color(aux::tcolor c) {
 int World::red_food() {
     int count = 0;
     for(int i = 0; i < World::red_count(); i++) {
-        if(redbugs[i]->get_has_food()){
+        if(redbugs[i]->get_has_food()) {
             std::cout << "Red Bug "<< i << " has food\n";
             count++;
         }

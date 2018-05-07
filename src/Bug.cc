@@ -1,6 +1,5 @@
 #include "Bug.h"
 #include <iostream>
-#include "Exception.h"
 
 Bug::Bug() {
     color.c = 0;
@@ -12,8 +11,8 @@ Bug::Bug() {
 }
 
 Bug::Bug(aux::tcolor c, int new_pid, int new_resting) {
-    if(c.c > 1 || c.c < 0){
-        throw Exception("Color number must be 0 or 1.\n");
+    if(c.c > 1 || c.c < 0) {
+        throw "Color number must be 0 or 1.\n";
     }
     color = c;
     prog_id = new_pid;
@@ -43,7 +42,7 @@ bool Bug::get_has_food() {
 
 void Bug::set_has_food(bool f) {
     if(has_food == true && f == true) {
-        throw Exception("Bug already has food! \n");
+        throw "Bug already has food! \n";
     }
     if(has_food == false && f == true) {
         std::cout << "Grabbing food!\n";
@@ -57,7 +56,7 @@ aux::tcolor Bug::get_color() { //this returns either a 0 or 1, i.e. black or red
 
 void Bug::set_color(int cl) {
     if(cl < 0 || cl > 1) {
-        throw Exception("Color must be 1 or 0.\n");
+        throw "Color must be 1 or 0.\n";
     }
     color.c = cl;
 }
@@ -77,7 +76,7 @@ aux::tposition Bug::get_position() {
 
 void Bug::start_resting() {
     if(remaining_rest == resting)
-        throw Exception("The bug was already resting\n");
+        throw "The bug was already resting\n";
     remaining_rest=resting; 
 }
 
@@ -96,7 +95,7 @@ bool Bug::is_dead() {
 
 void Bug::kill() {
     if(dead == true) {
-        throw Exception("Bug is already dead!\n");
+        throw "Bug is already dead!\n";
     }
     dead = true;
 }

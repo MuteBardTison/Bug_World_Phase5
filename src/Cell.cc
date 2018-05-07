@@ -1,5 +1,4 @@
 #include "Cell.h"
-#include "Exception.h"
 
 Cell::Cell(char symb) {
     food = 0;
@@ -37,7 +36,7 @@ Cell::Cell(char symb) {
         //cout << "Created food cell \n";
     } 
     else {
-        throw Exception("Invalid symbol\n");
+        throw "Invalid symbol\n";
     }
 }
 
@@ -46,7 +45,7 @@ Bug* Cell::get_occupant() {
         return occupant;
     }
     else{
-        throw Exception("Occupant hasn't been set yet");
+        throw "Occupant hasn't been set yet";
     }
 }
 
@@ -70,7 +69,7 @@ void Cell::set_food(int new_food) {
         food = new_food;
     } 
     else {
-        throw Exception("Food can't be negative valued");
+        throw "Food can't be negative valued";
     }
 }
 
