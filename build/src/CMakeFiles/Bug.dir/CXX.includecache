@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Tison/Documents/GitHub/Bug_World_Phase5/src/Bug.cc
+Bug.h
+/Users/Tison/Documents/GitHub/Bug_World_Phase5/src/Bug.h
+iostream
+-
+
+/Users/Tison/Documents/GitHub/Bug_World_Phase5/src/Bug.h
+auxbug.h
+/Users/Tison/Documents/GitHub/Bug_World_Phase5/src/auxbug.h
+
+/Users/Tison/Documents/GitHub/Bug_World_Phase5/src/auxbug.h
+iostream
+-
+algorithm
+-
+string
+-
+

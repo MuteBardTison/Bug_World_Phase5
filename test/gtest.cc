@@ -8,9 +8,14 @@
 #include "auxbug.h"
 #include "adjacent_cell.h"
 #include "gtest/gtest.h"
+#include "Program.h"
+#include "Instruction.h"
 
 const std::string FILE_NAME = "map.txt";
 
+TEST(Buggy, ProgramTest){Program program;}
+TEST(Buggy, WorldTest){World world;}
+TEST(Buggy, InstructionTest){}
 TEST(Buggy, CellTest){
     Cell obstruct = Cell('#');
     Cell black_home = Cell('-');

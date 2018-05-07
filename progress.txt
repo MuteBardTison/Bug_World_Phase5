@@ -8,3 +8,4 @@ Progress:
 * Modified scenario of handling exceptions
 * rename aux.h and aux.cc due to preserved naming under Windows environment
 * Add additional test cases
+* Add .travis.yml
