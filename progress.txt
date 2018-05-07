@@ -1,0 +1,10 @@
+Bug World
+
+Phase 5 Contributors: Zihan Qi & Shen Huang
+
+Progress:
+* Fixed all bugs in simulator codes
+* Cleanup, add .gitignore and CMakeLists.txt
+* Modified scenario of handling exceptions
+* rename aux.h and aux.cc due to preserved naming under Windows environment
+* Add additional test cases
