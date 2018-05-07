@@ -7,6 +7,7 @@ set (CMAKE_CXX_STANDARD 11)
 project(Bug_World)
 
 add_subdirectory(src)
+add_subdirectory(test)
 
 file(GLOB buggy
 	"./src/assembler/bug.buggy"

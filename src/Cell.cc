@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Cell.h"
 
 Cell::Cell(char symb) {
@@ -36,7 +37,7 @@ Cell::Cell(char symb) {
         //cout << "Created food cell \n";
     } 
     else {
-        throw "Invalid symbol\n";
+        throw std::invalid_argument("Invalid symbol\n");
     }
 }
 
@@ -45,7 +46,7 @@ Bug* Cell::get_occupant() {
         return occupant;
     }
     else{
-        throw "Occupant hasn't been set yet";
+        throw std::invalid_argument("Occupant hasn't been set yet");
     }
 }
 
@@ -69,7 +70,7 @@ void Cell::set_food(int new_food) {
         food = new_food;
     } 
     else {
-        throw "Food can't be negative valued";
+        throw std::invalid_argument("Food can't be negative valued.");
     }
 }
 
