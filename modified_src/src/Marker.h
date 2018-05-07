@@ -3,11 +3,13 @@
 
 #include "aux.h"
 
-class Marker{ //TODO have code in the source file instead of the header file
+class Marker{
     private:
         unsigned int bits;
+
     public:
         Marker();        
+        void check_inputs(aux::tmark mark, aux::tcolor color);
         void set_marker(aux::tmark mark, aux::tcolor color);
         void clear_marker(aux::tmark mark, aux::tcolor color);
         bool check_marker(aux::tmark mark, aux::tcolor color);

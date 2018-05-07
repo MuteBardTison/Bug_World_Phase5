@@ -1,156 +1,135 @@
 #include "Program.h"
+
 #include <fstream>
 #include <iostream>
 #include <vector>
 
-using namespace std;
+#include "tokenizer.h"
 
-Program::Program(string filename, World w)
-{
-    this->w=w;
-    ifstream f(filename.c_str());
+Program::Program(std::string filename, World w) {
+    this->w = w;
+    std::ifstream f(filename.c_str());
    
-    if(!f.is_open())
-    {
+    if(!f.is_open()) {
         throw "Unable to open the assembly language program file\n";
     }
     
-   // vector<string> command;
     i=0;
-    string s;
+    std::string s;
 
-    while(f.good())
-    {
+    while(f.good()) {
         getline(f,s);
-        vector<string> command=tokens_in_vector(s);
-        vector<string>::iterator it=command.begin();
-        if(*it== "sense"){
-            I_sense* t;
+        std::vector<std::string> command = tokens_in_vector(s);
+        std::vector<std::string>::iterator it = command.begin();
+        if(*it == "sense") {
+            I_sense* t = nullptr;
             t->parse(s);
-            lse.push_back(*t);
-            order[i]=make_pair(lse.size(),"sense");
+            ise.push_back(*t);
+            order[i] = std::make_pair(ise.size(), "sense");
             i++;
         }
-        else if(*it=="flip"){
-            I_flip * f;
+        else if(*it == "flip") {
+            I_flip* f = nullptr;
             f->parse(s);
-            lfl.push_back(*f);
-            order[i]=make_pair(lfl.size(),"flip");
+            ifl.push_back(*f);
+            order[i] = std::make_pair(ifl.size(), "flip");
             i++;
         }
-        else if(*it=="pickup"){
-            I_pickup *p;
+        else if(*it == "pickup") {
+            I_pickup* p = nullptr;
             p->parse(s);
-            lpi.push_back(*p);
-            order[i]=make_pair(lpi.size(),"pickup");
+            ipi.push_back(*p);
+            order[i] = std::make_pair(ipi.size(), "pickup");
             i++;
         }
-        else if(*it=="mark"){
-            I_mark* t;
+        else if(*it == "mark") {
+            I_mark* t = nullptr;
             t->parse(s);
-            lma.push_back(*t);
-            order[i]=make_pair(lma.size(),"mark");
+            ima.push_back(*t);
+            order[i] = std::make_pair(ima.size(), "mark");
             i++;
         }
-        else if(*it=="unmark"){
-            I_unmark* u;
+        else if(*it == "unmark") {
+            I_unmark* u = nullptr;
             u->parse(s);
-            lun.push_back(*u);
-            order[i]=make_pair(lun.size(),"unmark");
+            iun.push_back(*u);
+            order[i] = std::make_pair(iun.size(), "unmark");
             i++;
         }
-        else if(*it =="direction"){
-            I_direction * d;
+        else if(*it == "direction") {
+            I_direction * d = nullptr;
             d->parse(s);
-            ldi.push_back(*d);
-            order[i]=make_pair(ldi.size(),"direction");
+            idi.push_back(*d);
+            order[i] = std::make_pair(idi.size(), "direction");
             i++;
         }
-        else if(*it=="move"){    
-            I_move * m;
+        else if(*it=="move") {    
+            I_move * m = nullptr;
             m->parse(s);
-            lmo.push_back(*m);
-            order[i]=make_pair(lmo.size(),"move");
+            imo.push_back(*m);
+            order[i] = std::make_pair(imo.size(), "move");
             i++;
         }
-        else if(*it=="turn"){
-            I_turn* t;
+        else if(*it == "turn") {
+            I_turn* t = nullptr;
             t->parse(s);
-            ltu.push_back(*t);
-            order[i]=make_pair(ltu.size(),"turn");
+            itu.push_back(*t);
+            order[i] = std::make_pair(itu.size(), "turn");
             i++;
         }
-        else if(*it== "drop"){
-            I_drop* dr;
+        else if(*it == "drop") {
+            I_drop* dr = nullptr;
             dr->parse(s);
-            ldr.push_back(*dr);
-            order[i]=make_pair(ldr.size(),"drop");
+            idr.push_back(*dr);
+            order[i] = std::make_pair(idr.size(), "drop");
             i++; 
         }
         else{
             throw "Unspecified command\n";
         }
-    }
-    
-    
-    /*vector<string>::iterator it=command.begin();
-    for(it; it!=command.end();it++)
-    {
-        cout<<*it<<endl; checked if input well read
-    }*/
-    
+    }  
 }
 
-void Program::step(Bug b, World w)
-{
-    if(!b.is_dead()){
-        int rest=b.rested();
-        if(rest==1){
-            aux::tstate s=b.get_state();
-            pair<int,string> aux=order[s.st];// recall first value the position, second value the type of instruction
-            if(aux.second=="sense")
-            {
-                I_sense in=lse[aux.first];
+void Program::step(Bug b, World w) {
+    if(!b.is_dead()) {
+        int rest = b.rested();
+        if(rest == 1) {
+            aux::tstate s = b.get_state();
+            std::pair<int, std::string> aux = order[s.st];// recall first value the position, second value the type of instruction
+            if(aux.second == "sense") {
+                I_sense in = ise[aux.first];
                 in.execute(b,w);
             }
-            if(aux.second=="flip")
-            {
-                I_flip in=lfl[aux.first];
+            if(aux.second == "flip") {
+                I_flip in = ifl[aux.first];
                 in.execute(b);
             }
-            if(aux.second=="pickup")
-            {
-                I_pickup in=lpi[aux.first];
+            if(aux.second == "pickup") {
+                I_pickup in = ipi[aux.first];
                 in.execute(b,w);
             } 
-            if(aux.second=="mark")
-            {
-                I_mark in=lma[aux.first];
+            if(aux.second == "mark") {
+                I_mark in = ima[aux.first];
                 in.execute(b,w);
             }
-            if(aux.second=="unmark")
-            {
-                I_unmark in=lun[aux.first];
+            if(aux.second == "unmark") {
+                I_unmark in = iun[aux.first];
                 in.execute(b,w);
             }
-            if(aux.second=="direction")
-            {
-                I_direction in=ldi[aux.first];
+            if(aux.second == "direction") {
+                I_direction in = idi[aux.first];
                 in.execute(b);
             }
-            if(aux.second=="move")
-            {
-                I_move in=lmo[aux.first];
+            if(aux.second == "move") {
+                I_move in = imo[aux.first];
                 in.execute(b,w);
             }
-            if(aux.second=="turn")
-            {
-                I_turn in=ltu[aux.first];
+            if(aux.second == "turn") {
+                I_turn in = itu[aux.first];
                 in.execute(b);
             }
-            if(aux.second=="drop")
-            {
-                I_drop in=ldr[aux.first];
+            if(aux.second == "drop") {
+                I_drop in = idr[aux.first];
                 in.execute(b,w);
             }
         }

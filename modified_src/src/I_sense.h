@@ -3,18 +3,17 @@
 #include "aux.h"
 #include "World.h"
 #include "Bug.h"
-#include "tokenizer.h"
-#include "adjacent_cell.h"
+#include "Instruction.h"
 
 class I_sense: public Instruction {
     private:
-        tsensedir dir;
-        tstate x;
-        tstate y;
-        tcondition condition;
+        aux::tsensedir dir;
+        aux::tstate x;
+        aux::tstate y;
+        aux::tcondition condition;
     public:
         void execute(Bug b, World w);
-        void parse(string args);
+        void parse(std::string args);
 };
 
 #endif /* I_SENSE_H */

@@ -1,6 +1,7 @@
 #ifndef I_DIRECTION_H
 #define I_DIRECTION_H
 #include "aux.h"
+#include "Instruction.h"
 
 class I_direction : public Instruction {
     private:

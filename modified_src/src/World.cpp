@@ -1,9 +1,9 @@
+#include "World.h"
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
 #include <algorithm>
 #include <string>
-#include "World.h"
 #include "tokenizer.h"
 
 bool even(int n){
@@ -14,10 +14,10 @@ bool odd(int n){
     return !(n%2);
 }
 
-int World::load(string filenames){
-    vector<std::string> files=tokens_in_vector(filenames);
-    vector<std::string>::iterator it=files.begin();
-    ifstream wf,pf;
+int World::load(std::string filenames){
+    std::vector<std::string> files=tokens_in_vector(filenames);
+    std::vector<std::string>::iterator it=files.begin();
+    std::ifstream wf,pf;
     std::string line;
     aux::tcolor black;
     aux::tcolor red;
@@ -25,7 +25,7 @@ int World::load(string filenames){
     red.c = 1;
     int bbcount = 0;
     int rbcount = 0;
-    wf.open(*it, ios::in);
+    wf.open(*it, std::ios::in);
     if(wf.is_open()){
         wf >> width >> length;
     }
@@ -80,9 +80,9 @@ int World::load(string filenames){
         
     }
     it++;
-    pb=Program(*it,*this);//program black bugs
-    pr=Program(*it,*this);//program red bugs
-    std::cout << "World initialization complete. \n";
+    pb = Program(*it,*this);//program black bugs
+    pr = Program(*it,*this);//program red bugs
+    std::cout << "World initialization complete.\n";
     return 0;
 }
 
@@ -164,7 +164,6 @@ aux::tposition World::adjacent(aux::tdirection dir, aux::tposition pos){
     
 }
 
-//Implemented Oana's 
 aux::tcolor World::other_color(aux::tcolor c){
     aux::tcolor res;
     res.c = 1 - c.c;
@@ -208,8 +207,8 @@ void World::error(std::string msg){
 }
 
 void World::log(std::string msg){
-    ofstream logfile;
-    logfile.open("log.txt", ios::out);
+    std::ofstream logfile;
+    logfile.open("log.txt", std::ios::out);
     if(logfile.is_open()){
         logfile << msg << std::endl;
         std::cout << "successfully logged \n"; 
@@ -248,7 +247,7 @@ bool World::set_food_at(aux::tposition p, int f){ //not additive;
 };
     
 bool World::base_at(aux::tposition p, aux::tcolor c){
-    if(c.c = 0){
+    if(c.c == 0){
         return get_cell(p)->is_black_home_area();
     }
     else return get_cell(p)->is_red_home_area();
@@ -320,12 +319,12 @@ void World::execute_cycle()
    {
         if(redbugs[r]->get_prog_id()==i)
         {
-           pr.step(*redbugs[r],*this);
+           pr->step(*redbugs[r],*this);
            r++;
         }
         if(blackbugs[b]->get_prog_id()==i)
         {
-            pr.step(*blackbugs[b],*this);
+            pr->step(*blackbugs[b],*this);
             b++;
         }
    }

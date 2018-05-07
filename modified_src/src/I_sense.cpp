@@ -1,8 +1,11 @@
 #include "I_sense.h"
 
+#include "tokenizer.h"
+#include "adjacent_cell.h"
+
 bool cellmatch(World w, int x, int y, aux::tcondition condition, aux::tcolor color)
 {
-    bool match;
+    bool match = false;
     Cell* cell = w.get_cell(aux::tposition(x, y));
     Bug* bug = w.bug_at(aux::tposition(x, y));
     if(cell->get_obstructed())
@@ -71,6 +74,7 @@ bool cellmatch(World w, int x, int y, aux::tcondition condition, aux::tcolor col
                 match = cell->mark.check_marker(aux::tmark(5),color);
                 break;
             default:
+                throw "Cell Match Error.\n";
                 break;
         }
     }
@@ -115,11 +119,11 @@ void I_sense::execute(Bug b, World w){
 
 }
 
-void I_sense::parse(string args){
-    vector<string> command=tokens_in_vector(args);
-    vector<string>::iterator it=command.begin();
+void I_sense::parse(std::string args){
+    std::vector<std::string> command = tokens_in_vector(args);
+    std::vector<std::string>::iterator it = command.begin();
     it++;
-    string s=*it;
+    std::string s = *it;
     /*
     0-Here
     1-Ahead
@@ -127,17 +131,17 @@ void I_sense::parse(string args){
     3-RightAhead
     */
     aux::tsensedir aux(s);
-    dir=aux;
+    dir = aux;
     it++;
-    s=*it;
+    s = *it;
     aux::tstate aux2(s);
-    x=aux2;
+    x = aux2;
     it++;
-    s=*it;
+    s = *it;
     aux::tstate aux3(s);
-    y=aux3;
+    y = aux3;
     it++;
-    s=*it;
+    s = *it;
     aux::tcondition t(s);
-    condition=t;
+    condition = t;
 }

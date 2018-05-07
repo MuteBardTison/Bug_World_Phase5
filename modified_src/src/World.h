@@ -5,7 +5,8 @@
 #include "Bug.h"
 #include "aux.h"
 #include "Cell.h"
-#include "Program.h"
+
+class Program;
 
 #define MAX_SIZE 500;
 
@@ -13,20 +14,19 @@ class World {
     private:
         int width;
         int length;
-        Program pb;//program for black bugs
-        Program pr; //program for red bugs
+        Program* pb;//program for black bugs
+        Program* pr; //program for red bugs
         std::vector<Bug*> redbugs;
         std::vector<Bug*> blackbugs;
         std::vector< std::vector<Cell*> > cell_container;
-        //Cell::Cell *cells[];
         
     public:
-        World(){
+        World() {
             width = 0;
             length = 0;
         };
         ~World(){};
-        int load(string);
+        int load(std::string);
         void execute_cycle();
         //cell::Cell get_cell(aux::tposition);
         aux::tposition adjacent(aux::tdirection, aux::tposition);
@@ -36,8 +36,8 @@ class World {
         int black_food();
         int red_count();
         int black_count();
-        void error(string);
-        void log(string);
+        void error(std::string);
+        void log(std::string);
         void print_grid();
         int cell_test();
         int get_length(){
@@ -49,10 +49,10 @@ class World {
         int get_width(){
             return width;
         };
-        vector<Bug*> get_redbugs(){
+        std::vector<Bug*> get_redbugs(){
             return redbugs;
         }
-        vector<Bug*> get_blackbugs(){
+        std::vector<Bug*> get_blackbugs(){
             return blackbugs;
         }
         std::vector< std::vector<Cell*> > get_cellcont(){
@@ -73,10 +73,7 @@ class World {
         int adjacent_other_bugs(aux::tposition, aux::tcolor);
         void kill_if_surrounded(aux::tposition);
         void check_for_surrounded_bugs(aux::tposition);
-        void execute_cycle();
 };
-
-
 
 #endif /* WORLD_H */
 

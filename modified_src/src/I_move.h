@@ -3,14 +3,15 @@
 #include "aux.h"
 #include "Bug.h"
 #include "World.h"
+#include "Instruction.h"
 
-class I_move {
+class I_move : public Instruction{
     private:
         aux::tstate x;
         aux::tstate y;
     public:
         void execute(Bug b, World w);
-        void parse(string args);
+        void parse(std::string args);
 };
 
 

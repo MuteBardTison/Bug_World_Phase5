@@ -4,7 +4,6 @@
 #include "Bug.h"
 #include "World.h"
 #include "Instruction.h"
-#include "tokenizer.h"
 
 class I_drop: public Instruction {
     private:
@@ -14,6 +13,4 @@ class I_drop: public Instruction {
         void parse(std::string args);
 };
 
-
 #endif /* I_DROP_H */
-

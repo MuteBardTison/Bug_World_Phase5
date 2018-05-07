@@ -1,7 +1,6 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
-#include "aux.h"
-#include "World.h"
+
 #include "Bug.h"
 
 class Instruction {   

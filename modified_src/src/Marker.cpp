@@ -1,16 +1,16 @@
 #include "Marker.h"
 #include "Bug.h"
-#include "exception.h"
+#include "Exception.h"
 
 Marker::Marker() {
     bits = 0; //set all bits to 0 at initialization
 }
 
-void check_inputs(aux::tmark mark, aux::tcolor color){
-    if(!(mark.m >= 0 && mark.m <= 5)){
+void Marker::check_inputs(aux::tmark mark, aux::tcolor color) {
+    if(!(mark.m >= 0 && mark.m <= 5)) {
         throw Exception("Mark must be number between 0 and 5\n");
     }
-    else if(!(color.c == 0 || color.c == 1)){
+    else if(!(color.c == 0 || color.c == 1)) {
         throw Exception("Color must be either 0 or 1\n");
     }
 }
@@ -39,6 +39,20 @@ void Marker::clear_marker(aux::tmark mark, aux::tcolor color) {
     }
 }
 
+bool Marker::check_marker(aux::tmark mark, aux::tcolor color) {
+    check_inputs(mark, color);
+    int bit;
+    switch (color.c) {
+        case 0://black
+            bit = (bits >> mark.m) & 1U;
+            return (bit == 1);
+        case 1://red
+            bit = (bits >> (mark.m + 6)) & 1U;
+            return (bit == 1);
+    }
+    throw Exception("Check Marker Error.\n");
+}
+
 bool Marker::check_other_marker(aux::tcolor color) {
     aux::tmark mark;
     mark.m = 0;
@@ -58,17 +72,6 @@ bool Marker::check_other_marker(aux::tcolor color) {
             }
             return false;
     }
+    throw Exception("Check Marker Error.\n");
 }
 
-bool Marker::check_marker(aux::tmark mark, aux::tcolor color) {
-    check_inputs(mark, color);
-    int bit;
-    switch (color.c) {
-        case 0://black
-            bit = (bits >> mark.m) & 1U;
-            return (bit == 1);
-        case 1://red
-            bit = (bits >> (mark.m + 6)) & 1U;
-            return (bit == 1);
-    }
-}
