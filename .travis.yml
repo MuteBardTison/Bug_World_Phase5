@@ -1,8 +1,15 @@
+dist: trusty
+sudo: false
 language: cpp
 
 compiler:
   - gcc
   - clang
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
 
 before_script:
   - mkdir build

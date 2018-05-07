@@ -73,7 +73,8 @@ int World::load(std::string filenames){
                 new_cell->set_occupant(blackbugs[bbcount]);
                 bbcount++;
                 //std::cout << "Black bug home base found; Creating a bug...\n";
-            } 
+            }
+            
             //std::cout << "Cell assigned successfully" << std::endl;
         }
         std::cout << std::endl;
@@ -155,10 +156,9 @@ auxbug::tposition World::adjacent(auxbug::tdirection dir, auxbug::tposition pos)
             }
             break;
         default:
-            std::cout << "Error!" << std::endl;
             res.x = -1;
             res.y = -1;
-            throw "Invalid direction integer!\n";
+            throw std::invalid_argument("Invalid direction integer!\n");
             ///raise exception here;
             break;
     }
@@ -228,7 +228,7 @@ void World::print_grid(){
 
 void World::place_at(auxbug::tposition p, Bug* b) {
     if(cell_container[p.y][p.x]->occupied()) {
-        throw ("The cell is already occupied!");
+        throw std::invalid_argument("The cell is already occupied!");
     }
     else{
         b->set_position(p.x, p.y);
@@ -245,8 +245,8 @@ bool World::set_food_at(auxbug::tposition p, int f){ //not additive;
     }
     else{
         get_cell(p)->set_food(f);
+        return true;
     }
-    throw "Set Food Error.\n";
 }
     
 bool World::base_at(auxbug::tposition p, auxbug::tcolor c) {
