@@ -1,8 +1,0 @@
-Bug World
-
-Phase 4 Contributors: Oana Miron & Zihan Qi
-
-Progress:
-* Fix and finished Program
-* Completed Instructions, Aux
-* Minor changes in World
