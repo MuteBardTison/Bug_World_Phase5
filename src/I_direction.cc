@@ -6,7 +6,7 @@
 
 
 void I_direction::execute(Bug b) {
-    aux::tdirection di=b.get_direction();
+    auxbug::tdirection di=b.get_direction();
     if(di.d == d.d) {
         b.set_state(x);
     }
@@ -19,14 +19,14 @@ void I_direction::parse(std::string args) {
     std::vector<std::string>::iterator it = command.begin();
     it++;
     std::string s = *it;
-    aux::tdirection a(std::stoi(s));
+    auxbug::tdirection a(std::stoi(s));
     d = a;
     it++;
     s = *it;
-    aux::tstate aux(s);
-    x = aux;
+    auxbug::tstate auxbug(s);
+    x = auxbug;
     it++;
     s = *it;
-    aux::tstate aux2(s);
-    y = aux2;
+    auxbug::tstate auxbug2(s);
+    y = auxbug2;
 }

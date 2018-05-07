@@ -2,10 +2,9 @@
 #include <vector>
 #include <string>
 #include "tokenizer.h"
-#include "aux.h"
 #include "Instruction.h"
 
-int turn (aux::tleftright l, aux::tdirection dir) {
+int turn (auxbug::tleftright l, auxbug::tdirection dir) {
     switch(l.l) {
         case 0://left
             return (dir.d + 5) % 6;
@@ -29,10 +28,10 @@ void I_turn::parse(std::string args) {
     std::vector<std::string>::iterator it = command.begin();
     it++;
     std::string s = *it;
-    aux::tleftright aux(s);
-    lr = aux;
+    auxbug::tleftright auxbug(s);
+    lr = auxbug;
     it++;
     s = *it;
-    aux::tstate aux2(s);
-    z = aux2;
+    auxbug::tstate auxbug2(s);
+    z = auxbug2;
 }

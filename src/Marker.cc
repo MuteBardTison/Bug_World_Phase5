@@ -5,7 +5,7 @@ Marker::Marker() {
     bits = 0; //set all bits to 0 at initialization
 }
 
-void Marker::check_inputs(aux::tmark mark, aux::tcolor color) {
+void Marker::check_inputs(auxbug::tmark mark, auxbug::tcolor color) {
     if(!(mark.m >= 0 && mark.m <= 5)) {
         throw "Mark must be number between 0 and 5\n";
     }
@@ -14,7 +14,7 @@ void Marker::check_inputs(aux::tmark mark, aux::tcolor color) {
     }
 }
 
-void Marker::set_marker(aux::tmark mark, aux::tcolor color) {
+void Marker::set_marker(auxbug::tmark mark, auxbug::tcolor color) {
     check_inputs(mark, color);
     switch (color.c) {
         case 0: //black
@@ -26,7 +26,7 @@ void Marker::set_marker(aux::tmark mark, aux::tcolor color) {
     }
 }
 
-void Marker::clear_marker(aux::tmark mark, aux::tcolor color) {
+void Marker::clear_marker(auxbug::tmark mark, auxbug::tcolor color) {
     check_inputs(mark, color);
     switch (color.c) {
         case 0://black
@@ -38,7 +38,7 @@ void Marker::clear_marker(aux::tmark mark, aux::tcolor color) {
     }
 }
 
-bool Marker::check_marker(aux::tmark mark, aux::tcolor color) {
+bool Marker::check_marker(auxbug::tmark mark, auxbug::tcolor color) {
     check_inputs(mark, color);
     int bit;
     switch (color.c) {
@@ -52,8 +52,8 @@ bool Marker::check_marker(aux::tmark mark, aux::tcolor color) {
     throw "Check Marker Error.\n";
 }
 
-bool Marker::check_other_marker(aux::tcolor color) {
-    aux::tmark mark;
+bool Marker::check_other_marker(auxbug::tcolor color) {
+    auxbug::tmark mark;
     mark.m = 0;
     check_inputs(mark, color); /*set mark to 0 so that the first case passes and color is checked */
     int bit;

@@ -20,8 +20,8 @@ int World::load(std::string filenames){
     std::vector<std::string>::iterator it = files.begin();
     std::ifstream wf, pf;
     std::string line;
-    aux::tcolor black;
-    aux::tcolor red;
+    auxbug::tcolor black;
+    auxbug::tcolor red;
     black.c = 0;
     red.c = 1;
     int bbcount = 0;
@@ -103,9 +103,9 @@ int World::cell_test() {
     return 0;
 }
 
-aux::tposition World::adjacent(aux::tdirection dir, aux::tposition pos) {
+auxbug::tposition World::adjacent(auxbug::tdirection dir, auxbug::tposition pos) {
     int d = dir.d;
-    aux::tposition res;
+    auxbug::tposition res;
     switch(d) {
         case 0:
             res.x = pos.x + 1;
@@ -167,8 +167,8 @@ aux::tposition World::adjacent(aux::tdirection dir, aux::tposition pos) {
     
 }
 
-aux::tcolor World::other_color(aux::tcolor c) {
-    aux::tcolor res;
+auxbug::tcolor World::other_color(auxbug::tcolor c) {
+    auxbug::tcolor res;
     res.c = 1 - c.c;
     return res;
 }
@@ -227,7 +227,7 @@ void World::print_grid(){
     }
 }
 
-void World::place_at(aux::tposition p, Bug* b) {
+void World::place_at(auxbug::tposition p, Bug* b) {
     if(cell_container[p.y][p.x]->occupied()) {
         throw ("The cell is already occupied!");
     }
@@ -236,11 +236,11 @@ void World::place_at(aux::tposition p, Bug* b) {
     }
 }
 
-int World::food_at(aux::tposition p) {
+int World::food_at(auxbug::tposition p) {
     return get_cell(p)->get_food();
 }
 
-bool World::set_food_at(aux::tposition p, int f){ //not additive;
+bool World::set_food_at(auxbug::tposition p, int f){ //not additive;
     if(get_cell(p)->get_obstructed() ){
         return false;
     }
@@ -250,7 +250,7 @@ bool World::set_food_at(aux::tposition p, int f){ //not additive;
     throw "Set Food Error.\n";
 }
     
-bool World::base_at(aux::tposition p, aux::tcolor c) {
+bool World::base_at(auxbug::tposition p, auxbug::tcolor c) {
     if(c.c == 0) {
         return get_cell(p)->is_black_home_area();
     }
@@ -258,17 +258,17 @@ bool World::base_at(aux::tposition p, aux::tcolor c) {
         return get_cell(p)->is_red_home_area();
 }
 
-bool World::other_base_at(aux::tposition p, aux::tcolor c) {
+bool World::other_base_at(auxbug::tposition p, auxbug::tcolor c) {
     return !base_at(p, c);
 }
     
 //Martial arts
-int World::adjacent_other_bugs(aux::tposition p, aux::tcolor c) {
-    aux::tdirection d;
+int World::adjacent_other_bugs(auxbug::tposition p, auxbug::tcolor c) {
+    auxbug::tdirection d;
     int count = 0;
     for(int i = 0; i < 6; i++) {
         d.d = i;
-        aux::tposition adjp = adjacent(d, p);
+        auxbug::tposition adjp = adjacent(d, p);
         if(get_cell(adjp)->occupied()) {
             if(get_cell(adjp)->get_occupant()->get_color().c == c.c) {
                 count++;
@@ -278,14 +278,14 @@ int World::adjacent_other_bugs(aux::tposition p, aux::tcolor c) {
     return count;
 }
 
-void World::kill_if_surrounded(aux::tposition p) {
+void World::kill_if_surrounded(auxbug::tposition p) {
     if(p.x < 1 || p.y < 1 || p.x > width - 2 || p.y > length - 2) {
         //std::cout << "Invalid coordinates. \n";
         return;
     }
     if(get_cell(p)->occupied()) {
         Bug* b = get_cell(p)->get_occupant();
-        aux::tcolor oc = other_color(b->get_color());
+        auxbug::tcolor oc = other_color(b->get_color());
         if(adjacent_other_bugs(p, oc) > 4) {
             std::cout <<"This bug is surrounded! Alas, I must commit seppuku...\n";
             int i = 0;
@@ -306,9 +306,9 @@ void World::kill_if_surrounded(aux::tposition p) {
     }
 }
 
-void World::check_for_surrounded_bugs(aux::tposition p) {
+void World::check_for_surrounded_bugs(auxbug::tposition p) {
     kill_if_surrounded(p);
-    aux::tdirection dir;
+    auxbug::tdirection dir;
     for(int d = 0; d < 6; d++) {
         dir.d = d;
         kill_if_surrounded(adjacent(dir, p));
@@ -332,7 +332,7 @@ void World::execute_cycle() {
    }
 }
 
-aux::tcolor World::winner() {
+auxbug::tcolor World::winner() {
     int foodb = 0, foodr = 0;
     for(int i = 0; i < length; i++) {
         for(int j = 0; j < width; j++) {
@@ -345,8 +345,8 @@ aux::tcolor World::winner() {
         }
     }
     if(foodr > foodb) {
-        return aux::tcolor(0);
+        return auxbug::tcolor(0);
     }
     else
-        return aux::tcolor(1);
+        return auxbug::tcolor(1);
 }

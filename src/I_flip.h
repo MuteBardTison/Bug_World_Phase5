@@ -3,13 +3,13 @@
 #include <math.h>
 #include "Instruction.h"
 #include "Bug.h"
-#include "aux.h"
+#include "auxbug.h"
 
 class I_flip: public Instruction {
     private:
         int p;
-        aux::tstate x;
-        aux::tstate y;
+        auxbug::tstate x;
+        auxbug::tstate y;
         int seed=12345;
         
         int randomint() {

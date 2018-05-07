@@ -1,4 +1,4 @@
-#include "aux.h"
+#include "auxbug.h"
 
 void adjacentCell(int x, int y, int d, int *adjx, int *adjy) {
     switch(d) {

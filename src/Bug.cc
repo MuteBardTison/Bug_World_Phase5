@@ -10,7 +10,7 @@ Bug::Bug() {
     has_food = false;  
 }
 
-Bug::Bug(aux::tcolor c, int new_pid, int new_resting) {
+Bug::Bug(auxbug::tcolor c, int new_pid, int new_resting) {
     if(c.c > 1 || c.c < 0) {
         throw "Color number must be 0 or 1.\n";
     }
@@ -24,7 +24,7 @@ int Bug::get_state() {
     return state.st;
 }
 
-void Bug::set_state(aux::tstate s) {
+void Bug::set_state(auxbug::tstate s) {
     state = s;
 }
 
@@ -50,7 +50,7 @@ void Bug::set_has_food(bool f) {
     has_food = f;
 }
 
-aux::tcolor Bug::get_color() { //this returns either a 0 or 1, i.e. black or red. 
+auxbug::tcolor Bug::get_color() { //this returns either a 0 or 1, i.e. black or red. 
     return color; 
 }
 
@@ -70,7 +70,7 @@ void Bug::set_position(int x, int y) {
     pos.y = y;
 }
 
-aux::tposition Bug::get_position() {
+auxbug::tposition Bug::get_position() {
     return pos;
 }
 

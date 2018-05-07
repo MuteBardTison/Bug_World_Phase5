@@ -4,7 +4,7 @@
 #include "tokenizer.h"
 
 void I_drop::execute(Bug b, World w ) {
-    aux::tposition t = b.get_position();
+    auxbug::tposition t = b.get_position();
     Cell &cell = *(w.get_cell(t));
     if(b.get_has_food()) {
         cell.set_food(cell.get_food() + 1);
@@ -18,6 +18,6 @@ void I_drop::parse(std::string args) {
     std::vector<std::string>::iterator it = command.begin();
     it++;
     std::string s = *it;
-    aux::tstate aux(s);
-    z = aux;
+    auxbug::tstate auxbug(s);
+    z = auxbug;
 }

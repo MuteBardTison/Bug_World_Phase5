@@ -2,9 +2,9 @@
 #include "Bug.h"
 #include "Cell.h"
 #include "adjacent_cell.h"
-#include "aux.h"
+#include "auxbug.h"
 
-int otherColor(aux::tcolor val) {
+int otherColor(auxbug::tcolor val) {
     if(val.c==0)
         return 1;
     else
@@ -16,7 +16,7 @@ int adjacentBug(World &w, int x, int y, int color) {
     for(int dir = 0; dir < 6; dir++) {
         int adjx, adjy;
         adjacentCell(x, y, dir, &adjx, &adjy);
-        aux::tposition t(adjx, adjy);
+        auxbug::tposition t(adjx, adjy);
         Cell &cell = *w.get_cell(t);
         if(cell.occupied()) {
             Bug &b = *cell.get_occupant();
@@ -29,7 +29,7 @@ int adjacentBug(World &w, int x, int y, int color) {
 }
 
 void checkforsurrounded(World *w, int x, int y) {
-    aux::tposition t(x,y);
+    auxbug::tposition t(x,y);
     Cell &cell = *w->get_cell(t);
     if(cell.occupied()) {
         Bug &bug = *cell.get_occupant();

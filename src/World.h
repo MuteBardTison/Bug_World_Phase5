@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "Bug.h"
-#include "aux.h"
+#include "auxbug.h"
 #include "Cell.h"
 
 class Program;
@@ -28,10 +28,10 @@ class World {
         ~World(){};
         int load(std::string);
         void execute_cycle();
-        //cell::Cell get_cell(aux::tposition);
-        aux::tposition adjacent(aux::tdirection, aux::tposition);
-        aux::tcolor other_color(aux::tcolor);
-        aux::tcolor winner();
+        //cell::Cell get_cell(auxbug::tposition);
+        auxbug::tposition adjacent(auxbug::tdirection, auxbug::tposition);
+        auxbug::tcolor other_color(auxbug::tcolor);
+        auxbug::tcolor winner();
         int red_food();
         int black_food();
         int red_count();
@@ -43,7 +43,7 @@ class World {
         int get_length(){
             return length;
         };
-        Cell* get_cell(aux::tposition p){
+        Cell* get_cell(auxbug::tposition p){
             return cell_container[p.y][p.x];
         }
         int get_width(){
@@ -59,20 +59,20 @@ class World {
             return cell_container;
         }
         
-        Bug* bug_at(aux::tposition p){
+        Bug* bug_at(auxbug::tposition p){
             return cell_container[p.y][p.x]->get_occupant();
         }
-        void place_at(aux::tposition, Bug*);
-        int food_at(aux::tposition);
-        bool set_food_at(aux::tposition, int);
+        void place_at(auxbug::tposition, Bug*);
+        int food_at(auxbug::tposition);
+        bool set_food_at(auxbug::tposition, int);
         
-        bool base_at(aux::tposition, aux::tcolor);
-        bool other_base_at(aux::tposition, aux::tcolor);
+        bool base_at(auxbug::tposition, auxbug::tcolor);
+        bool other_base_at(auxbug::tposition, auxbug::tcolor);
         
         //Martial arts
-        int adjacent_other_bugs(aux::tposition, aux::tcolor);
-        void kill_if_surrounded(aux::tposition);
-        void check_for_surrounded_bugs(aux::tposition);
+        int adjacent_other_bugs(auxbug::tposition, auxbug::tcolor);
+        void kill_if_surrounded(auxbug::tposition);
+        void check_for_surrounded_bugs(auxbug::tposition);
 };
 
 #endif /* WORLD_H */

@@ -1,10 +1,10 @@
-#ifndef AUX_H
-#define AUX_H
+#ifndef AUXBUG_H
+#define AUXBUG_H
 
 #include <algorithm>
 #include <string>
 
-namespace aux {
+namespace auxbug {
     struct tcolor {
         int c; //0 or 1 for black or red 
         tcolor(int x) {
@@ -82,7 +82,7 @@ namespace aux {
                 throw "The state is out of boundaries\n";
         };
         tstate():st(0){};
-        tstate(std::string x):st(stoi(x)) {
+        tstate(std::string x):st(std::stoi(x)) {
             if(st < 0 || st > 9999)
                 throw "The state is out of boundaries\n";
         };
@@ -135,5 +135,5 @@ namespace aux {
         tposition():x(0),y(0){};
     };
 };
-#endif /* AUX_H */
+#endif /* AUXBUG_H */
 

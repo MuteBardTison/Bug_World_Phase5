@@ -19,10 +19,10 @@ void I_flip::parse(std::string args) {
     p = std::stoi(s);
     it++;
     s = *it;
-    aux::tstate aux(s);
-    x = aux;
+    auxbug::tstate auxbug(s);
+    x = auxbug;
     it++;
     s = *it;
-    aux::tstate aux2(s);
-    y = aux2;
+    auxbug::tstate auxbug2(s);
+    y = auxbug2;
 }

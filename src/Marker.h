@@ -1,7 +1,7 @@
 #ifndef MARKER_H
 #define MARKER_H
 
-#include "aux.h"
+#include "auxbug.h"
 
 class Marker{
     private:
@@ -9,11 +9,11 @@ class Marker{
 
     public:
         Marker();        
-        void check_inputs(aux::tmark mark, aux::tcolor color);
-        void set_marker(aux::tmark mark, aux::tcolor color);
-        void clear_marker(aux::tmark mark, aux::tcolor color);
-        bool check_marker(aux::tmark mark, aux::tcolor color);
-        bool check_other_marker(aux::tcolor color);
+        void check_inputs(auxbug::tmark mark, auxbug::tcolor color);
+        void set_marker(auxbug::tmark mark, auxbug::tcolor color);
+        void clear_marker(auxbug::tmark mark, auxbug::tcolor color);
+        bool check_marker(auxbug::tmark mark, auxbug::tcolor color);
+        bool check_other_marker(auxbug::tcolor color);
 };
 
 #endif /* MARKER_H */

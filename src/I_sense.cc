@@ -3,14 +3,14 @@
 #include "tokenizer.h"
 #include "adjacent_cell.h"
 
-bool cellmatch(World w, int x, int y, aux::tcondition condition, aux::tcolor color)
+bool cellmatch(World w, int x, int y, auxbug::tcondition condition, auxbug::tcolor color)
 {
     bool match = false;
-    Cell* cell = w.get_cell(aux::tposition(x, y));
-    Bug* bug = w.bug_at(aux::tposition(x, y));
+    Cell* cell = w.get_cell(auxbug::tposition(x, y));
+    Bug* bug = w.bug_at(auxbug::tposition(x, y));
     if(cell->get_obstructed())
         //Rock: 5
-        condition = aux::tcondition(5);//to change str to int
+        condition = auxbug::tcondition(5);//to change str to int
     else{
         switch(condition.cond) {
             //Friend
@@ -39,11 +39,11 @@ bool cellmatch(World w, int x, int y, aux::tcondition condition, aux::tcolor col
                 break;
             //Marker 0
             case 6:
-                match = cell->mark.check_marker(aux::tmark(0),color);
+                match = cell->mark.check_marker(auxbug::tmark(0),color);
                 break;
             //Marker 1
             case 7:
-                match = cell->mark.check_marker(aux::tmark(1),color);
+                match = cell->mark.check_marker(auxbug::tmark(1),color);
                 break;
             //FoeMarker
             case 8:
@@ -51,27 +51,27 @@ bool cellmatch(World w, int x, int y, aux::tcondition condition, aux::tcolor col
                 break;
             //Home
             case 9:
-                match = w.base_at(aux::tposition(x, y), color);
+                match = w.base_at(auxbug::tposition(x, y), color);
                 break;
             //FoeHome
             case 10:
-                match = w.other_base_at(aux::tposition(x, y), color);
+                match = w.other_base_at(auxbug::tposition(x, y), color);
                 break;
             //Marker 2
             case 11:
-                match = cell->mark.check_marker(aux::tmark(2),color);
+                match = cell->mark.check_marker(auxbug::tmark(2),color);
                 break;
             //Marker 3
             case 12:
-                match = cell->mark.check_marker(aux::tmark(3),color);
+                match = cell->mark.check_marker(auxbug::tmark(3),color);
                 break;
             //Marker 4
             case 13:
-                match = cell->mark.check_marker(aux::tmark(4),color);
+                match = cell->mark.check_marker(auxbug::tmark(4),color);
                 break;
             //Marker 5
             case 14:
-                match = cell->mark.check_marker(aux::tmark(5),color);
+                match = cell->mark.check_marker(auxbug::tmark(5),color);
                 break;
             default:
                 throw "Cell Match Error.\n";
@@ -81,7 +81,7 @@ bool cellmatch(World w, int x, int y, aux::tcondition condition, aux::tcolor col
     return match;
 }
 
-void sensecell(int x, int y, aux::tdirection d,aux::tsensedir sen,int *sensex,int *sensey)
+void sensecell(int x, int y, auxbug::tdirection d,auxbug::tsensedir sen,int *sensex,int *sensey)
 {
     if(sen.s==0){
         sensex=&x;
@@ -104,9 +104,9 @@ void sensecell(int x, int y, aux::tdirection d,aux::tsensedir sen,int *sensex,in
 
 void I_sense::execute(Bug b, World w){
     int sensex, sensey;
-    aux::tposition t=b.get_position();
-    aux::tdirection d=b.get_direction();
-    aux::tcolor c=b.get_color();
+    auxbug::tposition t=b.get_position();
+    auxbug::tdirection d=b.get_direction();
+    auxbug::tcolor c=b.get_color();
     sensecell(t.x,t.y,d,dir,&sensex,&sensey);
     if(cellmatch(w,sensex,sensey,condition,c))
     {
@@ -130,18 +130,18 @@ void I_sense::parse(std::string args){
     2-LeftAhead
     3-RightAhead
     */
-    aux::tsensedir aux(s);
-    dir = aux;
+    auxbug::tsensedir auxbug(s);
+    dir = auxbug;
     it++;
     s = *it;
-    aux::tstate aux2(s);
-    x = aux2;
+    auxbug::tstate auxbug2(s);
+    x = auxbug2;
     it++;
     s = *it;
-    aux::tstate aux3(s);
-    y = aux3;
+    auxbug::tstate auxbug3(s);
+    y = auxbug3;
     it++;
     s = *it;
-    aux::tcondition t(s);
+    auxbug::tcondition t(s);
     condition = t;
 }
