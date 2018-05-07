@@ -3,6 +3,8 @@ set (CMAKE_CXX_STANDARD 11)
 
 include_directories(${PROJECT_BINARY_DIR}/src)
 
+add_subdirectory(assembler)
+
 add_library(adjacent_cell adjacent_cell.cc)
 add_library(aux aux.cc)
 add_library(Bug Bug.cc)

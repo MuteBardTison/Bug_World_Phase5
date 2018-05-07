@@ -8,4 +8,10 @@ project(Bug_World)
 
 add_subdirectory(src)
 
+file(GLOB buggy
+	"./src/assembler/bug.buggy"
+)
+
+file(COPY ${buggy} DESTINATION "./src/assembler")
+
 enable_testing()
