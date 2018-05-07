@@ -1,4 +1,5 @@
 # Bug World
+[![Build Status](https://travis-ci.org/MuteBardTison/Bug_World_Phase5.svg?branch=master)](https://travis-ci.org/MuteBardTison/Bug_World_Phase5)
 
 **Software Engineering**
 Jacobs University, Spring Semester 2018
