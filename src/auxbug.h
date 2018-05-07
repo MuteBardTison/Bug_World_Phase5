@@ -1,6 +1,7 @@
 #ifndef AUXBUG_H
 #define AUXBUG_H
 
+#include <iostream>
 #include <algorithm>
 #include <string>
 
@@ -9,7 +10,7 @@ namespace auxbug {
         int c; //0 or 1 for black or red 
         tcolor(int x) {
             if(x != 0 && x != 1)
-                throw "The color is not in proper boundaries\n";
+                throw std::invalid_argument("The color is not in proper boundaries\n");
             c = x;
         };
         tcolor():c(0){};
@@ -19,7 +20,7 @@ namespace auxbug {
         int d;
         tdirection(int x) {
             if(x < 0 || x > 5)
-                throw "The direction is out of boundaries\n";
+                throw std::invalid_argument("The direction is out of boundaries\n");
             d = x;
         };
         tdirection():d(0){};
@@ -29,7 +30,7 @@ namespace auxbug {
         int s;
         tsensedir(int x) {
             if(x < 0 || x > 3)
-                throw "The sense direction is out of boundaries\n";
+                throw std::invalid_argument("The sense direction is out of boundaries\n");
             s = x;
         };
         tsensedir(std::string a) {
@@ -43,7 +44,7 @@ namespace auxbug {
             else if(a == "rightahead")
                 s = 3;
             else 
-                throw "The sense direction is out of boundaries\n";
+                throw std::invalid_argument("The sense direction is out of boundaries\n");
         };
     };
 
@@ -51,7 +52,7 @@ namespace auxbug {
         int l;
         tleftright(int x) {
             if(x != 0 || x != 1)
-                throw "The leftright parameter is out of boundaries\n";
+                throw std::invalid_argument("The leftright parameter is out of boundaries\n");
             l = x;
         };
         tleftright(std::string s) {
@@ -61,7 +62,7 @@ namespace auxbug {
             else if(s == "right")
                 l = 1;
             else
-                throw "The leftright parameter is out of boundaries\n";
+                throw std::invalid_argument("The leftright parameter is out of boundaries\n");
         }
     };
 
@@ -70,7 +71,7 @@ namespace auxbug {
         tmark():m(0){};
         tmark(int x) {
             if(x < 0 || x > 5)
-                throw "The mark is out of boundaries\n";
+                throw std::invalid_argument("The mark is out of boundaries\n");
             m = x;
         };
     };
@@ -79,12 +80,12 @@ namespace auxbug {
         int st;
         tstate(int x):st(x) {
             if(st < 0 || st > 9999)
-                throw "The state is out of boundaries\n";
+                throw std::invalid_argument("The state is out of boundaries\n");
         };
         tstate():st(0){};
         tstate(std::string x):st(std::stoi(x)) {
             if(st < 0 || st > 9999)
-                throw "The state is out of boundaries\n";
+                throw std::invalid_argument("The state is out of boundaries\n");
         };
     };
 
@@ -124,7 +125,7 @@ namespace auxbug {
             else if(s == "marker(5)")
                 cond = 14;
             else 
-                throw "Unspecified condition\n";
+                throw std::invalid_argument("Unspecified condition\n");
         }
     };
 

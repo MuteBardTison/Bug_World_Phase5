@@ -1,5 +1,6 @@
 #include "Marker.h"
 #include "Bug.h"
+#include <iostream>
 
 Marker::Marker() {
     bits = 0; //set all bits to 0 at initialization
@@ -7,10 +8,10 @@ Marker::Marker() {
 
 void Marker::check_inputs(auxbug::tmark mark, auxbug::tcolor color) {
     if(!(mark.m >= 0 && mark.m <= 5)) {
-        throw "Mark must be number between 0 and 5\n";
+        throw std::invalid_argument("Mark must be number between 0 and 5\n");
     }
     else if(!(color.c == 0 || color.c == 1)) {
-        throw "Color must be either 0 or 1\n";
+        throw std::invalid_argument("Color must be either 0 or 1\n");
     }
 }
 
@@ -49,7 +50,7 @@ bool Marker::check_marker(auxbug::tmark mark, auxbug::tcolor color) {
             bit = (bits >> (mark.m + 6)) & 1U;
             return (bit == 1);
     }
-    throw "Check Marker Error.\n";
+    throw std::invalid_argument("Check Marker Error.\n");
 }
 
 bool Marker::check_other_marker(auxbug::tcolor color) {
@@ -71,6 +72,6 @@ bool Marker::check_other_marker(auxbug::tcolor color) {
             }
             return false;
     }
-    throw "Check Marker Error.\n";
+    throw std::invalid_argument("Check Marker Error.\n");
 }
 

@@ -12,7 +12,7 @@ Bug::Bug() {
 
 Bug::Bug(auxbug::tcolor c, int new_pid, int new_resting) {
     if(c.c > 1 || c.c < 0) {
-        throw "Color number must be 0 or 1.\n";
+        throw std::invalid_argument("Color number must be 0 or 1.\n");
     }
     color = c;
     prog_id = new_pid;
@@ -42,10 +42,10 @@ bool Bug::get_has_food() {
 
 void Bug::set_has_food(bool f) {
     if(has_food == true && f == true) {
-        throw "Bug already has food! \n";
+        throw std::invalid_argument("Bug already has food! \n");
     }
     if(has_food == false && f == true) {
-        std::cout << "Grabbing food!\n";
+        throw std::invalid_argument("Grabbing food!\n");
     }
     has_food = f;
 }
@@ -56,7 +56,7 @@ auxbug::tcolor Bug::get_color() { //this returns either a 0 or 1, i.e. black or 
 
 void Bug::set_color(int cl) {
     if(cl < 0 || cl > 1) {
-        throw "Color must be 1 or 0.\n";
+        throw std::invalid_argument("Color must be 1 or 0.\n");
     }
     color.c = cl;
 }
@@ -76,17 +76,17 @@ auxbug::tposition Bug::get_position() {
 
 void Bug::start_resting() {
     if(remaining_rest == resting)
-        throw "The bug was already resting\n";
+        throw std::invalid_argument("The bug was already resting\n");
     remaining_rest=resting; 
 }
 
 bool Bug::rested(){
     if(remaining_rest > 0) {
         remaining_rest--;
-        return 0;
+        return false;
     }
     else
-        return 1;
+        return true;
 }
 
 bool Bug::is_dead() {
@@ -95,7 +95,7 @@ bool Bug::is_dead() {
 
 void Bug::kill() {
     if(dead == true) {
-        throw "Bug is already dead!\n";
+        throw std::invalid_argument("Bug is already dead!\n");
     }
     dead = true;
 }
@@ -106,4 +106,8 @@ void Bug::bug_stats(){
     std::cout << "ProgID:" << prog_id << std::endl;
     std::cout << "Dead:" << dead << std::endl;
     std::cout << "Resting:" << resting << std::endl;
+}
+
+int Bug::get_resting() {
+    return resting;
 }

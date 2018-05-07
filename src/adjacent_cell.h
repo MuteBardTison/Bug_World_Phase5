@@ -51,7 +51,7 @@ void adjacentCell(int x, int y, int d, int *adjx, int *adjy) {
             }
             break;
         default:
-            throw "The direction isn't in the proper boundaries\n";
+            throw std::invalid_argument("The direction isn't in the proper boundaries\n");
             break;
     }
 }

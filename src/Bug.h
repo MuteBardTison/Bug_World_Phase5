@@ -35,6 +35,7 @@ class Bug{
         bool is_dead();
         void kill();
         void bug_stats();
+        int get_resting();
 
         inline bool operator== (const Bug& b) { 
             if((b.color.c == color.c) && (b.prog_id == prog_id)) {

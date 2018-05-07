@@ -29,7 +29,7 @@ set(
     World
 )
 
-add_executable(gtest-cell gtest-cell.cc)
-target_link_libraries(gtest-cell GTest::GTest GTest::Main ${LIBS})
+add_executable(gtest gtest.cc)
+target_link_libraries(gtest GTest::GTest GTest::Main ${LIBS})
 
-add_test(Buggy gtest-cell)
+add_test(Buggy gtest)

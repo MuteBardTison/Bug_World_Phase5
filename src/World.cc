@@ -73,8 +73,7 @@ int World::load(std::string filenames){
                 new_cell->set_occupant(blackbugs[bbcount]);
                 bbcount++;
                 //std::cout << "Black bug home base found; Creating a bug...\n";
-            }
-            
+            } 
             //std::cout << "Cell assigned successfully" << std::endl;
         }
         std::cout << std::endl;
