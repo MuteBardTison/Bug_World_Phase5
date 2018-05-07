@@ -62,7 +62,7 @@ class World {
         Bug* bug_at(aux::tposition p){
             return cell_container[p.y][p.x]->get_occupant();
         }
-        bool place_at(aux::tposition, Bug*);
+        void place_at(aux::tposition, Bug*);
         int food_at(aux::tposition);
         bool set_food_at(aux::tposition, int);
         

@@ -3,9 +3,7 @@
 #include <string>
 #include "tokenizer.h"
 #include "Instruction.h"
-#include "adjacent_cell.h"
 #include "checkforbugs.h"
-
 
 void I_move::execute(Bug b, World w) {
     int nx,ny;

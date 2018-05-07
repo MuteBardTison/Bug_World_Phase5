@@ -25,6 +25,7 @@ int adjacentBug(World &w, int x, int y, int color) {
             }
         }
     }
+    return nb;
 }
 
 void checkforsurrounded(World *w, int x, int y) {

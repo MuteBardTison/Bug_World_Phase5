@@ -1,4 +1,3 @@
-#include "Cell.h"
 #include "aux.h"
 
 void adjacentCell(int x, int y, int d, int *adjx, int *adjy) {
